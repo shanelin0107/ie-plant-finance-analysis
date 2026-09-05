@@ -1,0 +1,17 @@
+supplier_id,supplier_name,commodity,category,country,tier,is_single_source,contract_on_file
+SUP-STL1,Great Lakes Steel Co.,Steel & Metal,Direct Materials,USA,Strategic,False,True
+SUP-STL2,Rio Grande Metals,Steel & Metal,Direct Materials,Mexico,Preferred,False,True
+SUP-STL3,Keystone Alloy Supply,Steel & Metal,Direct Materials,USA,Transactional,False,False
+SUP-RES1,Gulf Coast Polymers,Plastic Resin,Direct Materials,USA,Strategic,False,True
+SUP-RES2,Pacific Resin Traders,Plastic Resin,Direct Materials,Taiwan,Preferred,False,True
+SUP-SEM1,Formosa Semiconductor,Semiconductors,Direct Materials,Taiwan,Strategic,True,True
+SUP-SEM2,Anchor Microelectronics,Semiconductors,Direct Materials,USA,Preferred,False,True
+SUP-ELE1,Shenzhen Circuit Works,Electrical/Electronic,Direct Materials,China,Strategic,False,True
+SUP-ELE2,Lone Star Connectors,Electrical/Electronic,Direct Materials,USA,Preferred,False,True
+SUP-ELE3,Vertex Components,Electrical/Electronic,Direct Materials,USA,Transactional,False,False
+SUP-MRO1,Fastline Industrial MRO,MRO,MRO,USA,Preferred,False,True
+SUP-MRO2,Toolcraft Supply,MRO,MRO,USA,Transactional,False,False
+SUP-MRO3,Sunbelt Facility Parts,MRO,MRO,USA,Transactional,False,False
+SUP-FRT1,Continental Freightways,Freight (Diesel),Logistics,USA,Strategic,False,True
+SUP-FRT2,RedRiver Logistics,Freight (Diesel),Logistics,USA,Preferred,False,True
+SUP-FRT3,QuickHaul Carriers,Freight (Diesel),Logistics,USA,Transactional,False,False

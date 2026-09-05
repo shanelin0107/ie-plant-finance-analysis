@@ -65,6 +65,47 @@ rate; everything else is modeled around the real cost-structure shares.
 | variance_usd | float | DERIVED — actual − budget (positive = over budget = unfavorable) |
 | variance_pct | float | DERIVED — variance / budget × 100 |
 
+## data/processed/anchor_ppi.csv — REAL
+Monthly commodity Producer Price Indexes from FRED (St. Louis Fed), keyless CSV.
+
+| column | type | notes |
+|---|---|---|
+| month | date | monthly |
+| commodity | str | Steel & Metal, Plastic Resin, Semiconductors, Electrical/Electronic, Freight (Diesel) |
+| series_id | str | FRED series id (e.g. WPU101) |
+| ppi | float | REAL PPI level |
+| ppi_index_2022_01 | float | DERIVED — rebased to 100 at 2022-01 |
+
+## data/processed/dim_supplier.csv — SYNTH
+| column | type | notes |
+|---|---|---|
+| supplier_id | str | e.g. SUP-STL1 |
+| supplier_name | str | fictional |
+| commodity | str | links to anchor_ppi commodity |
+| category | str | Direct Materials / MRO / Logistics |
+| country | str | sourcing origin |
+| tier | str | Strategic / Preferred / Transactional |
+| is_single_source | bool | single-source flag (risk) |
+| contract_on_file | bool | on-contract vs maverick-eligible |
+
+## data/processed/fact_procurement.csv — SYNTH + DERIVED
+One row per month × site × supplier × commodity. **Direct-material rows reconcile to
+the Raw Materials line in `fact_site_costs.csv`** (same company, tied out).
+
+| column | type | notes |
+|---|---|---|
+| month, site_id | | keys |
+| supplier_id, supplier_name, commodity, category, country, tier | | supplier attrs |
+| is_single_source, on_contract | bool | risk / maverick flags |
+| qty | int | purchased quantity |
+| market_ppi_index | float | REAL commodity index that month (=100 @ 2022-01) |
+| standard_unit_price | float | standard cost = prior-year avg market |
+| actual_unit_price | float | price paid (market × tier premium × noise) |
+| baseline_unit_price | float | prior-year price, for savings |
+| actual_spend, standard_spend | float | qty × price |
+| ppv_usd | float | DERIVED — (actual − standard price) × qty; + = unfavorable |
+| savings_usd | float | DERIVED — (baseline − actual price) × qty; + = savings |
+
 ## Deliberate signals to find (for reviewers)
 These are intentionally seeded so the analysis has something to catch:
 1. Toledo (P-TOL) Maintenance & Repair trending unfavorable (aging line).
@@ -73,3 +114,7 @@ These are intentionally seeded so the analysis has something to catch:
 4. Austin (P-AUS) unit cost improving as volume ramps.
 5. Memphis DC (D-MEM) facilities step-down after a mid-2023 lease renegotiation.
 6. Portfolio-wide materials inflation as the dominant unfavorable driver.
+7. Steel/plastic/freight favorable PPV (real PPI fell); electrical/MRO unfavorable (real PPI rose).
+8. Semiconductors single-source risk (Formosa Semiconductor, high HHI).
+9. Plastic-resin re-source to Pacific Resin Traders mid-2023 lowers unit price (savings).
+10. ~13% maverick (off-contract) spend paid ~6% over contract rates.

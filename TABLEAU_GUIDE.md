@@ -58,5 +58,20 @@ Shade the gap where actual > budget.
 - Add a text box crediting the real anchors: *"Labor & establishment counts: U.S.
   Census CBP 2022. Cost structure: ASM 2021 / ACES 2022. Company data synthetic."*
 
-## 8. Publish
+## 8. Procurement dashboard (second dashboard, `fact_procurement.csv` + `dim_supplier.csv`)
+A separate tab for the "buyer" story. Relate `fact_procurement` to `dim_supplier` on `supplier_id`.
+
+- **Spend Pareto:** bar of `SUM([actual_spend])` by `supplier_name` (sorted desc) +
+  a running-total-% line (Table Calc → Running Total → % of Total). Reference line at 80%.
+- **PPV by commodity:** bar, Rows = `commodity`, Columns = `SUM([ppv_usd])`, color by
+  sign (green = favorable/negative). This is the steel-favorable / electrical-unfavorable split.
+- **Realized savings:** bar of `SUM([savings_usd])` by `QUARTER([month])`.
+- **Supplier concentration:** bar of spend share by supplier within each `commodity`
+  (or load `supplier_concentration.csv` for the HHI directly). Flag `is_single_source`.
+- **Maverick spend:** stacked bar `SUM([actual_spend])` by `category`, color = `on_contract`.
+- Global filters: `commodity`, `category`, `tier`, `country`, `MONTH(month)`.
+- Callout: prices are driven by **real FRED PPI**; direct-material spend **reconciles
+  to the Raw Materials cost line** in the finance dashboard.
+
+## 9. Publish
 Server → Tableau Public → Save. Copy the link into the portfolio and the repo.
