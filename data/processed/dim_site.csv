@@ -1,0 +1,12 @@
+site_id,site_name,site_type,city,state,naics3,headcount,sqft,tenure,opened_year,region,subsector
+P-TOL,Toledo Metal Works,Plant,Toledo,OH,332,420,210000,Owned,2004,Midwest,Fabricated Metal
+P-GRP,Grand Rapids Machining,Plant,Grand Rapids,MI,333,360,175000,Owned,2009,Midwest,Machinery
+P-AUS,Austin Electronics,Plant,Austin,TX,334,300,140000,Leased,2018,South,Computer & Electronic
+P-GRN,Greenville Drivetrain,Plant,Greenville,SC,336,480,260000,Owned,2001,South,Transportation Equipment
+P-FRS,Fresno Polymers,Plant,Fresno,CA,326,240,120000,Leased,2014,West,Plastics & Rubber
+P-PHX,Phoenix Precision,Plant,Phoenix,AZ,333,210,98000,Leased,2020,West,Machinery
+D-MEM,Memphis DC,DC,Memphis,TN,,95,180000,Leased,2016,South,
+D-REN,Reno DC,DC,Reno,NV,,70,150000,Leased,2019,South,
+O-CHI,Corporate HQ,Office,Chicago,IL,,180,45000,Leased,2011,Midwest,
+O-BOS,Boston R&D,Office,Boston,MA,,120,38000,Leased,2017,Northeast,
+O-CLT,Charlotte Sales,Office,Charlotte,NC,,55,16000,Leased,2021,South,

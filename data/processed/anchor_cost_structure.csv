@@ -1,0 +1,6 @@
+metric,usd_national,share_of_shipments,source_note
+value_of_shipments,6100000000000,1.0,ASM 2021 press release ($6.1T)
+cost_of_materials,3476999999999,0.57,ASM long-run materials share of shipments
+value_added,2806000000000,0.46,ASM long-run value-added share
+total_payroll,854000000000,0.14,ASM long-run payroll share (cross-check vs CBP)
+capital_expenditures,314300000000,0.052,ACES 2022 ($314.3B)

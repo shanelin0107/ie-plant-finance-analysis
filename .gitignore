@@ -1,0 +1,12 @@
+# Raw Census file is 89 MB and re-downloadable (see README "Reproduce")
+data/raw/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# OS
+.DS_Store
