@@ -65,6 +65,19 @@ rate; everything else is modeled around the real cost-structure shares.
 | variance_usd | float | DERIVED — actual − budget (positive = over budget = unfavorable) |
 | variance_pct | float | DERIVED — variance / budget × 100 |
 
+## data/processed/site_pnl.csv — DERIVED (site-finance view)
+Fully-loaded cost per operating site: direct site cost plus its allocated share of
+corporate HQ overhead (allocated by direct-cost share). Built by `07_site_finance.py`.
+
+| column | type | notes |
+|---|---|---|
+| site_id | str | operating sites only (HQ pool is the thing being allocated) |
+| site_name, site_type, headcount | | site attrs |
+| direct_annual_cost | float | avg annual direct cost of the site |
+| allocated_corporate | float | share of HQ overhead pushed onto the site |
+| fully_loaded_cost | float | direct + allocated |
+| direct_per_head, loaded_per_head | float | per-head, before/after allocation |
+
 ## data/processed/anchor_ppi.csv — REAL
 Monthly commodity Producer Price Indexes from FRED (St. Louis Fed), keyless CSV.
 

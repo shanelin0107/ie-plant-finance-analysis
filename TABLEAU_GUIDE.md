@@ -58,7 +58,20 @@ Shade the gap where actual > budget.
 - Add a text box crediting the real anchors: *"Labor & establishment counts: U.S.
   Census CBP 2022. Cost structure: ASM 2021 / ACES 2022. Company data synthetic."*
 
-## 8. Procurement dashboard (second dashboard, `fact_procurement.csv` + `dim_supplier.csv`)
+## 8. Site-finance dashboard (make this the FIRST dashboard — `fact_site_costs` + `site_pnl.csv`)
+This is the hero tab for a *site finance* role. Lead with the site, not the line.
+- **Site OpEx composition:** 100%-stacked bar. Rows = `site_name` (grouped by `site_type`),
+  Columns = `SUM([actual_usd])` as % of total, Color = a grouped **P&L bucket** calc
+  over `cost_category` (Labor / Materials / Facilities / Utilities / Maintenance /
+  Logistics / Depreciation / Other). Shows how structure differs by site type.
+- **Fully-loaded cost per head:** load `site_pnl.csv`. Stacked bar of
+  `direct_per_head` + (`allocated_corporate`/`headcount`) by `site_name`; sort by
+  `loaded_per_head`. The red "allocated corporate" segment is the site-finance point.
+- **Efficiency scatter:** as in §5 below, but framed across ALL site types.
+- **Owned vs leased:** bar of facilities `$/sqft` by site, color = `tenure`.
+- Global filters: `site_type`, `region`, `tenure`, `MONTH(month)`.
+
+## 9. Procurement dashboard (`fact_procurement.csv` + `dim_supplier.csv`) — bonus tab
 A separate tab for the "buyer" story. Relate `fact_procurement` to `dim_supplier` on `supplier_id`.
 
 - **Spend Pareto:** bar of `SUM([actual_spend])` by `supplier_name` (sorted desc) +
@@ -73,5 +86,5 @@ A separate tab for the "buyer" story. Relate `fact_procurement` to `dim_supplier
 - Callout: prices are driven by **real FRED PPI**; direct-material spend **reconciles
   to the Raw Materials cost line** in the finance dashboard.
 
-## 9. Publish
+## 10. Publish
 Server → Tableau Public → Save. Copy the link into the portfolio and the repo.
